@@ -24,8 +24,11 @@ app.use(requestLogger);
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 const options = {
-  origin:
+  origin: [
     'http://localhost:3000',
+    'http://algrigorovich.student.nomoredomains.sbs',
+    'https://algrigorovich.student.nomoredomains.sbs'
+  ],
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
