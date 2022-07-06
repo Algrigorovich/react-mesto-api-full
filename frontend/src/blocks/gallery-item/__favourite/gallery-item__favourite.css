@@ -1,0 +1,12 @@
+.gallery-item__favourite {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 22px;
+  height: 19px;
+  background: transparent url(../../../images/heart.svg) center/contain no-repeat;
+  flex-shrink: 0;
+}
+.gallery-item__favourite:hover {
+  opacity: 0.5;
+}

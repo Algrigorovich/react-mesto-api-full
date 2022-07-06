@@ -1,0 +1,9 @@
+.form__input_place_page {
+  background-color: #000;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 14px;
+  color: #ccc;
+}
+.form__input_place_page::placeholder {
+  color: #ccc;
+}

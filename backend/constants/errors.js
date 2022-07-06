@@ -1,0 +1,17 @@
+const WRONG_DATA = 400;
+const AUTH_ERROR = 401;
+const FORBIDDEN = 403;
+const NOT_FOUND = 404;
+const DUPLICATE_ERROR = 409;
+const SERVER_ERROR = 500;
+const MONGO_ERROR = 11000;
+
+module.exports = {
+  NOT_FOUND,
+  WRONG_DATA,
+  SERVER_ERROR,
+  AUTH_ERROR,
+  DUPLICATE_ERROR,
+  FORBIDDEN,
+  MONGO_ERROR,
+};
