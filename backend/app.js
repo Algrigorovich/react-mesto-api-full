@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-mongoose.connect(DB_CONN);
+mongoose.connect('mongodb://localhost:27017/mestodb');
 
 const options = {
   origin: [
