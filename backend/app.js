@@ -14,14 +14,14 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const handleError = require('./middlewares/handle-error');
 const NotFoundError = require('./errors/not-found-err');
 
-const { PORT = 3001, DB_LINK } = process.env;
+const { PORT = 3001, DB_CONN } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-mongoose.connect(DB_LINK);
+mongoose.connect(DB_CONN);
 
 const options = {
   origin: [
