@@ -36,13 +36,14 @@ const options = {
 };
 app.use(cors(options));
 
+app.use(requestLogger);
+app.use(helmet());
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
 app.use(limiter);
-app.use(helmet());
-app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
