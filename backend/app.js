@@ -14,13 +14,13 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const handleError = require('./middlewares/handle-error');
 const NotFoundError = require('./errors/not-found-err');
 
-const { PORT = 3001, DB_CONN } = process.env;
+const { PORT = 3001 } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(requestLogger);
+
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 const options = {
@@ -32,14 +32,12 @@ const options = {
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
-
 app.use(cors(options));
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-
 app.use(limiter);
 app.use(helmet());
 app.use(requestLogger);
@@ -51,9 +49,7 @@ app.get('/crash-test', () => {
 });
 
 app.use('/', authRouter);
-
 app.use(auth);
-
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
