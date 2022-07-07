@@ -33,7 +33,6 @@ function App() {
     if (loggedIn) {
       Promise.all([api.getProfileData(), api.getInitialCards()])
       .then(([user, cardList]) => {
-        console.log(user, 'context user')
         setCurrentUser(user);
         setCards(cardList);
       })
@@ -174,6 +173,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

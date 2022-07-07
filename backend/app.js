@@ -16,14 +16,14 @@ const NotFoundError = require('./errors/not-found-err');
 const { login, createUser } = require('./controllers/users');
 const urlRegexp = require('./constants/regexp-url');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3001, DB_CONN } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect(DB_CONN);
 
 const options = {
   origin: [
