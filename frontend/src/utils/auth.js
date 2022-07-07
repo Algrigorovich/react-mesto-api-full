@@ -48,7 +48,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3001'}`,
+  baseUrl: `${window.location.protocol}//algrigorovich.backend.nomoredomains.sbs`,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
