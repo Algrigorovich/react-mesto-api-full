@@ -131,7 +131,7 @@ const login = (req, res, next) => {
           sameSite: 'none',
           secure: true,
         })
-        .end();
+        .send({ message: 'Успешный вход' });
     })
     .catch(() => {
       throw new AuthError('Неправильная почта или пароль.');
@@ -141,7 +141,7 @@ const login = (req, res, next) => {
 
 const logout = (req, res) => {
   res.clearCookie('jwt')
-    .end();
+    .send({ message: 'Куки удалены' });
 };
 
 module.exports = {
