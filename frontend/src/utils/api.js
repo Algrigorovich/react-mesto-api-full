@@ -109,8 +109,7 @@ class Api {
 }
 
 const api = new Api({
- // baseUrl: `${window.location.protocol}//algrigorovich.backend.nomoredomains.sbs`,
- baseUrl: '//localhost:3001',
+ baseUrl: `${window.location.protocol}//algrigorovich.backend.nomoredomains.sbs`,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
