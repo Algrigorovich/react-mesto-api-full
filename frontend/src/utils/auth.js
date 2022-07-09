@@ -48,7 +48,8 @@ class Auth {
 const auth = new Auth({
   baseUrl: `${window.location.protocol}//algrigorovich.backend.nomoredomains.sbs`,
   headers: {
-    ...this._headers,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
   },
   credentials: 'include',
 });
