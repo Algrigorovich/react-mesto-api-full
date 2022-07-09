@@ -20,6 +20,7 @@ class Auth {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({email, password}),
+      credentials: 'include',
     }).then(this.handleResponse);
   };
 
@@ -30,19 +31,19 @@ class Auth {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
       body: JSON.stringify({email, password}),
+      credentials: 'include',
     }).then(this._handleResponse);
   };
 
-  getContent(token) {
+  getContent() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       },
+      credentials: 'include',
     }).then(this._handleResponse);
   };
 }
@@ -52,7 +53,8 @@ const auth = new Auth({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-  }
+  },
+  credentials: 'include',
 });
 
 export default auth;

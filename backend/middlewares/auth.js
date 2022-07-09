@@ -5,13 +5,12 @@ const AuthError = require('../errors/auth-err');
 
 // eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
-  const extractBearerToken = (header) => header.replace('Bearer ', '');
-  const { authorization } = req.headers;
+  const { jwt: token } = req.cookies;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
+  if (!token) {
     throw new AuthError('Необходима авторизация');
   }
-  const token = extractBearerToken(authorization);
+
   let payload;
 
   try {

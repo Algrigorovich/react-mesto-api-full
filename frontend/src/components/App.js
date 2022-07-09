@@ -136,7 +136,6 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         setEmail(email);
         history.push('/');
@@ -149,26 +148,31 @@ function App() {
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem('jwt');
-    setLoggedIn(false);
-    history.push('/sign-in');
+    api
+    .logout()
+    .then((res) => {
+      setLoggedIn(false);
+      setEmail('');
+      history.push('/sign-in');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   };
 
   const tokenCheck = () => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      auth
-        .getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.email);
-            history.push('/');
-          }
-        })
-        .catch((err) => console.error(err));
-    }
-  };
+    auth
+      .getContent()
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          setEmail(res.email);
+          history.push('/');
+        }
+      })
+      .catch((err) => console.error(err));
+  }
+
 
   useEffect(() => {
     tokenCheck();

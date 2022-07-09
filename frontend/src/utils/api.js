@@ -10,6 +10,7 @@ class Api {
 
   getProfileData() {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
@@ -18,6 +19,7 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
@@ -27,6 +29,7 @@ class Api {
   editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
@@ -40,6 +43,7 @@ class Api {
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
@@ -53,6 +57,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
@@ -62,6 +67,7 @@ class Api {
   deleteCardLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         ...this._headers,
       }
@@ -71,6 +77,7 @@ class Api {
   setCardLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
+      credentials: 'include',
       headers: {
         ...this._headers,
       }
@@ -80,12 +87,23 @@ class Api {
   updateAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         ...this._headers,
       },
       body: JSON.stringify({
         avatar: avatar,
       }),
+    }).then(this._handleResponse);
+  }
+
+  logout() {
+    return fetch(`${this._baseUrl}/logout`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        ...this._headers,
+      },
     }).then(this._handleResponse);
   }
 }
@@ -95,8 +113,7 @@ const api = new Api({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-  }
+  },
 });
 
 export default api;

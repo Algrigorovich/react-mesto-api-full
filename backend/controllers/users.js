@@ -124,12 +124,24 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'super-puper-secret-code', { expiresIn: '7d' });
-      res.send({ token, email });
+      res
+        .cookie('jwt', token, {
+          maxAge: 3600000 * 24 * 7,
+          httpOnly: true,
+          sameSite: 'none',
+          sequre: true,
+        })
+        .end();
     })
     .catch(() => {
       throw new AuthError('Неправильная почта или пароль.');
     })
     .catch(next);
+};
+
+const logout = (req, res) => {
+  res.clearCookie('jwt')
+    .end();
 };
 
 module.exports = {
@@ -140,4 +152,5 @@ module.exports = {
   updateUserAvatar,
   getUserInfo,
   login,
+  logout,
 };
