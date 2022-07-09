@@ -16,8 +16,7 @@ class Auth {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        ...this._headers,
       },
       body: JSON.stringify({email, password}),
       credentials: 'include',
@@ -28,8 +27,7 @@ class Auth {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        ...this._headers,
       },
       body: JSON.stringify({email, password}),
       credentials: 'include',
@@ -40,8 +38,7 @@ class Auth {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        ...this._headers,
       },
       credentials: 'include',
     }).then(this._handleResponse);
@@ -51,8 +48,7 @@ class Auth {
 const auth = new Auth({
   baseUrl: `${window.location.protocol}//algrigorovich.backend.nomoredomains.sbs`,
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    ...this._headers,
   },
   credentials: 'include',
 });
